@@ -1,5 +1,5 @@
 {
-  "name": "My workflow 2",
+  "name": "AI Career Advisor",
   "nodes": [
     {
       "parameters": {
@@ -37,7 +37,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1.1,
       "position": [
-        448,
+        320,
         224
       ],
       "id": "49443b85-761b-4548-af12-99ad27cd88f2",
@@ -130,7 +130,7 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "c9e7b0c3-1303-4c3e-aa19-aaefd898134a",
+  "versionId": "d0626858-c845-41b1-b5bb-0b8cc8ec32b5",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "6715f3e293de335ed3483fa2b68d65318be009ba57c4f34022b4bb75110cfeab"
