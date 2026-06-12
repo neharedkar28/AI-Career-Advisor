@@ -1,0 +1,141 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "689135d8-1c5b-4ad9-b877-274cef976331",
+      "name": "When chat message received",
+      "webhookId": "625677f1-39ec-4109-8f20-3d9c12d4385f"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are an expert AI Career Advisor.\n\nWhenever a user asks about careers, skills, salaries, roadmaps, learning paths, certifications, jobs, internships, or projects, use the Google Sheets tool to retrieve information.\n\nThen provide:\n\n1. Best career recommendation\n2. Required skills\n3. Learning roadmap\n4. Salary estimate\n5. Project ideas\n6. Certifications\n\nBe detailed and practical."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        432,
+        0
+      ],
+      "id": "af0a1ac6-f56b-455a-b359-f60831f105cf",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        224
+      ],
+      "id": "49443b85-761b-4548-af12-99ad27cd88f2",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "bR6Hf3rKvYFnmWK7",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "14zgsXc0ty6ZJKYHodjDpr08P4SZupSEEnAuoyI0F8uc",
+          "mode": "list",
+          "cachedResultName": "project",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14zgsXc0ty6ZJKYHodjDpr08P4SZupSEEnAuoyI0F8uc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14zgsXc0ty6ZJKYHodjDpr08P4SZupSEEnAuoyI0F8uc/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        576,
+        224
+      ],
+      "id": "ae228734-af9a-45ec-b9c9-9d53d9c65e5a",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vLnK2C73wwqRYSli",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "c9e7b0c3-1303-4c3e-aa19-aaefd898134a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6715f3e293de335ed3483fa2b68d65318be009ba57c4f34022b4bb75110cfeab"
+  },
+  "nodeGroups": [],
+  "id": "KtyvR4eD6YW35bKB",
+  "tags": []
+}
